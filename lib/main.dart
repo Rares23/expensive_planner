@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 void main() => runApp(ExpensePlannerApp());
 
 class ExpensePlannerApp extends StatelessWidget {
+  final String title = 'Expense Planner';
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: title,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Expensive Planner'),
+      home: MyHomePage(title: title),
     );
   }
 }
