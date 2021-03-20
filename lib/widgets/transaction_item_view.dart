@@ -1,4 +1,4 @@
-import 'package:expense_planner/data/transaction.dart';
+import 'package:expense_planner/data/models/transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -17,14 +17,17 @@ class TransactionItemView extends StatelessWidget {
             margin: EdgeInsets.all(16),
             padding: EdgeInsets.all(8),
             decoration: BoxDecoration(
-              border: Border.all(color: Colors.blue, width: 2),
+              border: Border.all(
+                color: Theme.of(context).primaryColor,
+                width: 2,
+              ),
             ),
             child: Text(
-              '\$${transaction.amount}',
+              '\$${transaction.amount.toStringAsFixed(2)}',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
-                color: Colors.blue,
+                color: Theme.of(context).primaryColor,
               ),
             ),
           ),
