@@ -34,15 +34,12 @@ class TransactionsListView extends StatelessWidget {
   }
 
   Widget buildList(BuildContext context) {
-    return Container(
-      height: 300,
-      child: ListView.builder(
-        itemBuilder: (context, index) => TransactionItemView(
-          transaction: transactions[index],
-          deleteTransaction: deleteTransaction,
-        ),
-        itemCount: transactions.length,
+    return ListView.builder(
+      itemBuilder: (context, index) => TransactionItemView(
+        transaction: transactions[index],
+        deleteTransaction: deleteTransaction,
       ),
+      itemCount: transactions.length,
     );
   }
 

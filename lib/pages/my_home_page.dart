@@ -74,9 +74,11 @@ class _MyHomePageState extends State<MyHomePage> {
           TransactionsListHeaderView(
             recentTransactions: _recentTransactions,
           ),
-          TransactionsListView(
-            transactions: _transactions,
-            deleteTransaction: _deleteTransaction,
+          Expanded(
+            child: TransactionsListView(
+              transactions: _transactions,
+              deleteTransaction: _deleteTransaction,
+            ),
           ),
         ],
       ),
