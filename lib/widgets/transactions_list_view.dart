@@ -1,9 +1,12 @@
-class TransactionsListView extends StatefulWidget {
-  @override
-  _TransactionsListViewState createState() => _TransactionsListViewState();
-}
+import 'package:expense_planner/data/models/transaction.dart';
+import 'package:expense_planner/widgets/transaction_item_view.dart';
+import 'package:flutter/material.dart';
 
-class _TransactionsListViewState extends State<TransactionsListView> {
+class TransactionsListView extends StatelessWidget {
+  final List<Transaction> transactions;
+
+  TransactionsListView({@required this.transactions});
+
   @override
   Widget build(BuildContext context) {
     return Column(
