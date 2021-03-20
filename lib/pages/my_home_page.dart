@@ -14,9 +14,18 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _transactions = [];
+  List<Transaction> get _recentTransactions {
+    return _transactions.where((tx) {
+      return tx.date.isAfter(DateTime.now().subtract(
+        Duration(
+          days: 7,
+        ),
+      ));
+    }).toList();
+  }
 
-  void _createTransaction(String title, double amount) {
-    if (title.isNotEmpty) {
+  void _createTransaction(String title, double amount, DateTime date) {
+    if (title.isNotEmpty && date != null) {
       setState(
         () {
           _transactions.add(
@@ -24,7 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
               id: _transactions.length.toString(),
               title: title,
               amount: amount,
-              date: DateTime.now(),
+              date: date,
             ),
           );
         },
@@ -56,8 +65,12 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Column(
         children: [
-          TransactionsListHeaderView(),
-          TransactionsListView(transactions: _transactions),
+          TransactionsListHeaderView(
+            recentTransactions: _recentTransactions,
+          ),
+          TransactionsListView(
+            transactions: _transactions,
+          ),
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
