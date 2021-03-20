@@ -24,6 +24,14 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
+  void _deleteTransaction(String id) {
+    setState(() {
+      _transactions.removeWhere((element) {
+        return element.id == id;
+      });
+    });
+  }
+
   void _createTransaction(String title, double amount, DateTime date) {
     if (title.isNotEmpty && date != null) {
       setState(
@@ -70,6 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           TransactionsListView(
             transactions: _transactions,
+            deleteTransaction: _deleteTransaction,
           ),
         ],
       ),

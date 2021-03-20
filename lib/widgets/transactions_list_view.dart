@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 
 class TransactionsListView extends StatelessWidget {
   final List<Transaction> transactions;
+  final Function deleteTransaction;
 
-  TransactionsListView({@required this.transactions});
+  TransactionsListView(
+      {@required this.transactions, @required this.deleteTransaction});
 
   Widget buildNoTransactionsView(BuildContext context) {
     return Column(
@@ -35,8 +37,10 @@ class TransactionsListView extends StatelessWidget {
     return Container(
       height: 300,
       child: ListView.builder(
-        itemBuilder: (context, index) =>
-            TransactionItemView(transaction: transactions[index]),
+        itemBuilder: (context, index) => TransactionItemView(
+          transaction: transactions[index],
+          deleteTransaction: deleteTransaction,
+        ),
         itemCount: transactions.length,
       ),
     );
