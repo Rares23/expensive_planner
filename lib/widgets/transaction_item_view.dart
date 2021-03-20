@@ -42,6 +42,7 @@ class TransactionItemView extends StatelessWidget {
         ),
         trailing: IconButton(
           icon: Icon(Icons.delete),
+          color: Colors.grey,
           onPressed: () => deleteTransaction(transaction.id),
         ),
       ),

@@ -26,9 +26,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _deleteTransaction(String id) {
     setState(() {
-      _transactions.removeWhere((element) {
-        return element.id == id;
-      });
+      _transactions.removeWhere((element) => element.id == id);
     });
   }
 
@@ -38,7 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
         () {
           _transactions.add(
             Transaction(
-              id: _transactions.length.toString(),
+              id: DateTime.now().toString(),
               title: title,
               amount: amount,
               date: date,
