@@ -1,6 +1,5 @@
 import 'package:expense_planner/data/models/transaction.dart';
 import 'package:expense_planner/widgets/new_transaction_form.dart';
-import 'package:expense_planner/widgets/transactions_list_header_view.dart';
 import 'package:expense_planner/widgets/transactions_list_view.dart';
 import 'package:flutter/material.dart';
 
@@ -69,18 +68,12 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          TransactionsListHeaderView(
-            recentTransactions: _recentTransactions,
-          ),
-          Expanded(
-            child: TransactionsListView(
-              transactions: _transactions,
-              deleteTransaction: _deleteTransaction,
-            ),
-          ),
-        ],
+      body: Container(
+        child: TransactionsListView(
+          transactions: _transactions,
+          deleteTransaction: _deleteTransaction,
+          recentTransactions: _recentTransactions,
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(

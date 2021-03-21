@@ -1,13 +1,18 @@
 import 'package:expense_planner/data/models/transaction.dart';
 import 'package:expense_planner/widgets/transaction_item_view.dart';
+import 'package:expense_planner/widgets/transactions_list_header_view.dart';
 import 'package:flutter/material.dart';
 
 class TransactionsListView extends StatelessWidget {
   final List<Transaction> transactions;
+  final List<Transaction> recentTransactions;
   final Function deleteTransaction;
 
-  TransactionsListView(
-      {@required this.transactions, @required this.deleteTransaction});
+  TransactionsListView({
+    @required this.transactions,
+    @required this.recentTransactions,
+    @required this.deleteTransaction,
+  });
 
   Widget buildNoTransactionsView(BuildContext context) {
     return Column(
@@ -35,18 +40,35 @@ class TransactionsListView extends StatelessWidget {
 
   Widget buildList(BuildContext context) {
     return ListView.builder(
-      itemBuilder: (context, index) => TransactionItemView(
-        transaction: transactions[index],
-        deleteTransaction: deleteTransaction,
-      ),
-      itemCount: transactions.length,
+      itemBuilder: (context, index) {
+        if (index == 0) {
+          if (transactions.isEmpty) {
+            return Column(
+              children: [
+                TransactionsListHeaderView(
+                  recentTransactions: recentTransactions,
+                ),
+                buildNoTransactionsView(context),
+              ],
+            );
+          } else {
+            return TransactionsListHeaderView(
+              recentTransactions: recentTransactions,
+            );
+          }
+        } else {
+          return TransactionItemView(
+            transaction: transactions[index - 1],
+            deleteTransaction: deleteTransaction,
+          );
+        }
+      },
+      itemCount: transactions.length + 1,
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return transactions.isEmpty
-        ? buildNoTransactionsView(context)
-        : buildList(context);
+    return buildList(context);
   }
 }

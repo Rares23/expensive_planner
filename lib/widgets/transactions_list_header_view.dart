@@ -10,12 +10,18 @@ class TransactionsListHeaderView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: MediaQuery.of(context).size.height * 0.2,
       margin: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       child: Card(
         color: Colors.white,
-        child: Container(
-          width: double.infinity,
-          child: ChartView(recentTransactions: recentTransactions),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return Container(
+              height: constraints.maxHeight,
+              width: double.infinity,
+              child: ChartView(recentTransactions: recentTransactions),
+            );
+          },
         ),
         elevation: 5,
       ),
