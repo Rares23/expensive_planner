@@ -16,7 +16,7 @@ class TransactionsListView extends StatelessWidget {
           height: 16,
         ),
         Container(
-          height: 130,
+          height: MediaQuery.of(context).size.height * 0.2,
           child: Image.asset(
             'assets/images/broke.png',
             fit: BoxFit.cover,
